@@ -3,13 +3,6 @@ import { resolve } from "node:path";
 
 export const HOME = os.homedir();
 
-/** Pi agent config directory. Respects PI_CODING_AGENT_DIR > XDG_CONFIG_HOME > ~/.pi/agent. */
-export const PI_AGENT_DIR: string = (() => {
-  if (process.env.PI_CODING_AGENT_DIR) return resolve(process.env.PI_CODING_AGENT_DIR);
-  if (process.env.XDG_CONFIG_HOME) return resolve(process.env.XDG_CONFIG_HOME, "pi", "agent");
-  return resolve(HOME, ".pi", "agent");
-})();
-
 /** Built-in protected paths. Writes to these go to the classifier regardless of allow rules. */
 export const DEFAULT_PROTECTED_PATHS = [
   ".git",
@@ -156,7 +149,7 @@ Examples:
 Respond with JSON exactly matching:
 {"decision":"allow"|"block","tier":"hard_deny"|"soft_deny"|"allow"|"explicit_intent"|"none","reason":"brief concrete reason"}`;
 
-export const PI_GLOBAL_SETTINGS = [resolve(PI_AGENT_DIR, "automode.json")];
+export const PI_GLOBAL_SETTINGS = [resolve(HOME, ".pi", "agent", "automode.json")];
 export const PI_PROJECT_LOCAL_SETTINGS = [".pi/automode.local.json"];
 export const PI_PROJECT_SHARED_SETTINGS = [".pi/automode.json"];
 

@@ -143,7 +143,7 @@ async function setupHookTest(options: {
 }
 
 test("global config path uses Pi agent config directory", () => {
-	assert.match(PI_GLOBAL_SETTINGS[0] ?? "", /(\.pi|pi)\/agent\/automode\.json$/);
+	assert.match(PI_GLOBAL_SETTINGS[0] ?? "", /\.pi\/agent\/automode\.json$/);
 });
 
 test("project shared Pi settings can add permissions but cannot weaken autoMode", () => {
